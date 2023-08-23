@@ -6,12 +6,7 @@ function getComputerChoice() {
 }
 
 
-
-const rock = document.querySelector("#rock")
-const scissor = document.querySelector('#scissor')
-const paper = document.querySelector('#paper')
 const score = document.querySelector("#score")
-
 const options = document.querySelector(".options")
 const body = document.querySelector("body")
 
@@ -30,12 +25,14 @@ let count = 0
 options.addEventListener("click", e => {
     let playerSelection = e.target.id
     let computerSelection = getComputerChoice()
-    displayResults(computerSelection)
-    let result = gamePlay(playerSelection, computerSelection)
-    if (result === "win") {
+    
+    let result = gamePlay(playerSelection, computerSelection).toUpperCase()
+    if (result === "WIN") {
         count++
     }
-    score.textContent = count
+    score.textContent = `Wins: ${count}`
+
+    computerResult.innerHTML = `Computer selected ${computerSelection} <br/> you ${result}!`
 
 })
 
@@ -59,13 +56,21 @@ function gamePlay(player, computer){
     }
     }
 
-
-function displayResults(computer) {
-    
-    computerResult.textContent = `Computer selected ${computer}`
-    
+function transitionEnd(e) {
+    console.log(e.target);
+    e.target.classList.remove("clicked")
 }
 
+
+
+
+document.querySelectorAll("img").forEach(box => {
+    box.onclick = () => {
+        box.classList = "clicked"
+    }
+    box.addEventListener("transitionend", transitionEnd)
+    
+})
 
 
 
