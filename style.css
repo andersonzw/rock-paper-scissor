@@ -59,7 +59,8 @@ img:hover {
 
 
 img.clicked {
-    border: solid; 
+    border: dashed; 
+    transition: 0.05s;
  
 }
 

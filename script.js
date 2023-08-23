@@ -21,16 +21,19 @@ options.addEventListener("mouseover", e => {
     let hover = e.target
 })
 
-let count = 0
+let roundCount = 0 
+let winCount = 0
 options.addEventListener("click", e => {
+    roundCount ++
+    document.querySelector("span").textContent = roundCount
     let playerSelection = e.target.id
     let computerSelection = getComputerChoice()
     
     let result = gamePlay(playerSelection, computerSelection).toUpperCase()
     if (result === "WIN") {
-        count++
+        winCount++
     }
-    score.textContent = `Wins: ${count}`
+    score.textContent = `Wins: ${winCount}`
 
     computerResult.innerHTML = `Computer selected ${computerSelection} <br/> you ${result}!`
 
